@@ -9,7 +9,6 @@ include("asset/class.php");
 	<body>
 		<?php include("./asset/header.php"); ?>
 		<main>
-			<p>is coffe time</p>
 		</main>
 		<?php include("./asset/footer.php"); ?>
 	</body>
