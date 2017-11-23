@@ -19,7 +19,7 @@ elseif( !empty($_POST['a']) && !empty($_POST['uname']) && !empty($_POST['passw']
   <?php include("./asset/header.php"); ?>
   <main>
     <?php echo (!empty($_SESSION['msg']))? "<div>". $_SESSION['msg']."</div>":''; ?>
-    <form>
+    <form method="post">
       <legend>login</legend>
       <label for="uname">user name:</label><br>
       <input type="text" name="uname" <?php echo (!empty($_SESSION['formname']))? 'value="'.$_SESSION['formname'].'"':''; ?>>
@@ -29,7 +29,7 @@ elseif( !empty($_POST['a']) && !empty($_POST['uname']) && !empty($_POST['passw']
       <input type="hidden" name="a" value="l">
       <input type="submit" value="Submit">
     </form>
-    <form>
+    <form method="post">
       <legend>register</legend>
       <label for="uname">user name:</label><br>
       <input type="text" name="uname" <?php echo (!empty($_SESSION['formname']))? 'value="'.$_SESSION['formname'].'"':''; ?>>
