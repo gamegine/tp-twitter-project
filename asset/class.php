@@ -17,12 +17,12 @@ class msglist
   {
     global $bdd;
     $this->msg = array();
-		global $bdd;
-		$reponse = $bdd->prepare('SELECT * FROM `tw`');
-		$reponse->execute();
-		while ($donnees = $reponse->fetch())
-		{ array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) ); }
-		$reponse->closeCursor();
+    global $bdd;
+    $reponse = $bdd->prepare('SELECT * FROM `tw`');
+    $reponse->execute();
+    while ($donnees = $reponse->fetch())
+    { array_push( $this->msg, new msg( $donnees['id'] , $donnees['uid'] , $donnees['txt'] ) ); }
+    $reponse->closeCursor();
   }
   public function ech()
   { foreach ($this->msg as &$m) {$m->ech();} }
