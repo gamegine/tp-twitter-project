@@ -2,6 +2,7 @@
 session_start();
 include("asset/bdd.php");
 include("asset/session.php");
+$title = "login/register";
 $cl=new session();
 if(isset($_SESSION['id'))
 { $cl->logout(); }
