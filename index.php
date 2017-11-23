@@ -8,7 +8,9 @@ include("asset/class.php");
 	<?php include("./asset/head.php"); ?>
 	<body>
 		<?php include("./asset/header.php"); ?>
-		<main></main>
+		<main>
+			<p>is coffe time</p>
+		</main>
 		<?php include("./asset/footer.php"); ?>
 	</body>
 </html>
