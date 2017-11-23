@@ -4,7 +4,7 @@ include("asset/bdd.php");
 include("asset/session.php");
 $title = "login/register";
 $cl=new session();
-if(isset($_SESSION['id'))
+if(isset($_SESSION['id']))
 { $cl->logout(); }
 elseif( !empty($_POST['a']) && !empty($_POST['uname']) && !empty($_POST['passw']) )//post
 {
