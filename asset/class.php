@@ -1,3 +1,4 @@
+<?php
 class user
 {
   private $id,$name
