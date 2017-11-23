@@ -9,6 +9,10 @@ include("asset/class.php");
 	<body>
 		<?php include("./asset/header.php"); ?>
 		<main>
+			<?php
+			$l = new msglist();
+			$l->ech();
+			?>
 		</main>
 		<?php include("./asset/footer.php"); ?>
 	</body>
