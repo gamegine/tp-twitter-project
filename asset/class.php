@@ -1,3 +1,21 @@
+class user
+{
+  private $id,$name
+  public function __construct($id)
+  {
+    global $bdd;
+    $this->msg = array();
+    global $bdd;
+    $reponse = $bdd->prepare('SELECT `uid`,`name` FROM `user` where uid = :uid');
+    $reponse->execute();
+    $donnees = $reponse->fetch()
+    $this->id=$donnees['id'];
+    $this->id=htmlentities($donnees['name']);
+    $reponse->closeCursor();
+  }
+  public function ech()
+  { echo htmlentities($this->name); }
+}
 class msg
 {
   private $id,$author,$msg;
