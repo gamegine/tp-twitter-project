@@ -8,8 +8,8 @@ if(isset($_SESSION['id']))
 { $cl->logout(); }
 elseif( !empty($_POST['a']) && !empty($_POST['uname']) && !empty($_POST['passw']) )//post
 {
-      if($_POST['a']=='l'){ $cl->login((tmlentities($_POST['uname']),htmlentities($_POST['passw']));    }
-  elseif($_POST['a']=='r'){ $cl->register((tmlentities($_POST['uname']),htmlentities($_POST['passw'])); }
+      if($_POST['a']=='l'){ $cl->login(tmlentities($_POST['uname']),htmlentities($_POST['passw']));    }
+  elseif($_POST['a']=='r'){ $cl->register(tmlentities($_POST['uname']),htmlentities($_POST['passw'])); }
 }
 ?>
 <!doctype html>
