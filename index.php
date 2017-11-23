@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php 
+session_start();
+include("asset/bdd.php");
+include("asset/class.php");
+?>
 <!doctype html>
 <html lang="fr">
   <?php include("./asset/head.php"); ?>
