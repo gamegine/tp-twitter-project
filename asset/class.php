@@ -1,14 +1,14 @@
 <?php
 class user
 {
-  private $id,$name
+  private $id,$name;
   public function __construct($id)
   {
     $this->msg = array();
     global $bdd;
     $reponse = $bdd->prepare('SELECT `uid`,`name` FROM `user` where uid = :uid');
     $reponse->execute();
-    $donnees = $reponse->fetch()
+    $donnees = $reponse->fetch();
     $this->id=$donnees['id'];
     $this->id=htmlentities($donnees['name']);
     $reponse->closeCursor();
