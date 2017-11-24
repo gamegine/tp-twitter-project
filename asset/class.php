@@ -52,18 +52,19 @@ class msgf
   {
 	if(isset($_SESSION['id']))
 	{
-	global $bdd;
-	$reponse = $bdd->prepare('INSERT INTO `tw`(`uid`, `txt`) VALUES (:uid, :txt)');
-	$reponse->bindValue(':uid',$_SESSION['id'],PDO::PARAM_STR);
-	$reponse->bindValue(':txt',htmlentities($msg),PDO::PARAM_STR);
-	$reponse->execute();
-	$reponse->closeCursor();
-    header('Location: /');
+		global $bdd;
+		$reponse = $bdd->prepare('INSERT INTO `tw`(`uid`, `txt`) VALUES (:uid, :txt)');
+		$reponse->bindValue(':uid',$_SESSION['id'],PDO::PARAM_STR);
+		$reponse->bindValue(':txt',htmlentities($msg),PDO::PARAM_STR);
+		$reponse->execute();
+		$reponse->closeCursor();
+		$_SESSION['postmsg']='';
+		header( "refresh:0;url=/" );
 	}
 	else
 	{
 		header('Location: /session.php');
-		$_SESSION['postmsg']=$msg;
+		$_SESSION['postmsg']=htmlentities($msg);
 	}
   }
 }
