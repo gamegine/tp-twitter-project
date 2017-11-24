@@ -34,7 +34,6 @@ class msglist
   private $msg;
   public function __construct()
   {
-    global $bdd;
     $this->msg = array();
     global $bdd;
     $reponse = $bdd->prepare('SELECT * FROM `tw`');
