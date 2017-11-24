@@ -6,8 +6,8 @@ class user
   {
     $this->msg = array();
     global $bdd;
-    $reponse = $bdd->prepare('SELECT `uid`,`name` FROM `user` where uid = 1');
-	$reponse->bindValue(':uid',$id,PDO::PARAM_INT);
+    $reponse = $bdd->prepare('SELECT `uid`,`name` FROM `user` where uid = :uid');
+	$reponse->bindValue(':uid',intval($id),PDO::PARAM_INT);
     $reponse->execute();
     $donnees = $reponse->fetch();
     $this->id=$donnees['uid'];
