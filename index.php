@@ -2,6 +2,11 @@
 session_start();
 include("asset/bdd.php");
 include("asset/class.php");
+if(isset($_POST['post']))
+{
+	$post=new msgf();
+	$post->post(htmlentities($_POST['post']));
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -13,6 +18,13 @@ include("asset/class.php");
 			$l = new msglist();
 			$l->ech();
 			?>
+			<form method="post">
+				<fieldset>
+					<legend>post</legend>
+					<textarea name="post" maxlength="255" rows="4" cols="50" autofocus></textarea>
+					<input type="submit" value="Submit">
+				</fieldset>
+			</form>
 		</main>
 		<?php include("./asset/footer.php"); ?>
 	</body>
