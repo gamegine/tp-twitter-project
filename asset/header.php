@@ -2,7 +2,6 @@
 	<nav>
 		<ul>
 			<li><a href="/">accueil</a></li>
-		</ul>
 		<?php
 		if(!isset($_SESSION['id']))
 		{
@@ -22,5 +21,6 @@
 			<li><a href="/session.php">logout</a></li>';
 		}
 		?>
+		</ul>
 	</nav>
 </header>
