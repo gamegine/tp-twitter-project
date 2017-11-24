@@ -46,7 +46,7 @@ class msglist
   public function ech()
   { foreach ($this->msg as &$m) {$m->ech();} }
 }
-/*class msgf
+class msgf
 {
   public function post($msg)
   {
@@ -66,4 +66,4 @@ class msglist
 		$_SESSION['postmsg']=$msg;
 	}
   }
-}*/
+}
