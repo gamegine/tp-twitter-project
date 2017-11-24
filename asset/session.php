@@ -2,7 +2,7 @@
 class session
 {
   private $id,$name;
-  public function register($name,$mdp)
+  public function register($name,$passw)
   {
     global $bdd;
 		$reponse = $bdd->prepare('INSERT INTO `user`(`name`, `mdp`) VALUES (:name, :mdp)');
@@ -16,7 +16,7 @@ class session
     $_SESSION['msg'] = $_SESSION['formname'] = '';
     header('Location: /');
   }
-  public function login($name,$mdp)
+  public function login($name,$passw)
   {
     global $bdd;
 		$reponse = $bdd->prepare('SELECT * FROM `user` WHERE `name`=:name');
