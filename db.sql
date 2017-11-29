@@ -7,7 +7,7 @@ CREATE TABLE `twitt` (
 CREATE TABLE `user` (
   `uid` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
-  `mdp` text NOT NULL
+  `mdp` varchar(64) NOT NULL
 );
 ALTER TABLE `twitt`ADD PRIMARY KEY (`id`);
 ALTER TABLE `twitt` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
