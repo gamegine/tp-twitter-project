@@ -42,11 +42,7 @@
 			{ array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) ); }
 			$reponse->closeCursor();
 		}
-		public function ech()
-		{ foreach ($this->msg as &$m) {$m->ech();} }
-	}
-	class msglistuser extends msglist {
-		function __construct($id) {
+		function __construct1($id) {
 			$this->msg = array();
 			global $bdd;
 			$reponse = $bdd->prepare('SELECT * FROM `twitt`');
@@ -55,6 +51,8 @@
 			{ array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) ); }
 			$reponse->closeCursor();
 		}
+		public function ech()
+		{ foreach ($this->msg as &$m) {$m->ech();} }
 	}
 	class msgf
 	{
