@@ -36,7 +36,7 @@ class msglist
   {
     $this->msg = array();
     global $bdd;
-    $reponse = $bdd->prepare('SELECT * FROM `tw`');
+    $reponse = $bdd->prepare('SELECT * FROM `twitt`');
     $reponse->execute();
     while ($donnees = $reponse->fetch())
     { array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) ); }
@@ -52,7 +52,7 @@ class msgf
 	if(isset($_SESSION['id']))
 	{
 		global $bdd;
-		$reponse = $bdd->prepare('INSERT INTO `tw`(`uid`, `txt`) VALUES (:uid, :txt)');
+		$reponse = $bdd->prepare('INSERT INTO `twitt`(`uid`, `txt`) VALUES (:uid, :txt)');
 		$reponse->bindValue(':uid',$_SESSION['id'],PDO::PARAM_STR);
 		$reponse->bindValue(':txt',htmlentities($msg),PDO::PARAM_STR);
 		$reponse->execute();
