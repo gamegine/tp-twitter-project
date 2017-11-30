@@ -57,7 +57,7 @@
 			{
 				global $bdd;
 				$reponse = $bdd->prepare('INSERT INTO `twitt`(`uid`, `txt`) VALUES (:uid, :txt)');
-				$reponse->bindValue(':uid',$_SESSION['id'],PDO::PARAM_STR);
+				$reponse->bindValue(':uid',$_SESSION['id'],PDO::PARAM_INT);
 				$reponse->bindValue(':txt',htmlentities($msg),PDO::PARAM_STR);
 				$reponse->execute();
 				$reponse->closeCursor();
@@ -67,7 +67,43 @@
 			else
 			{
 				header('Location: /session.php');
-				$_SESSION['postmsg']=htmlentities($msg);
+				$_SESSION['postmsg']='not_connected';
+			}
+		}
+		public function like($mid)
+		{
+			if(isset($_SESSION['id']))
+			{
+				global $bdd;
+				$reponse = $bdd->prepare('SELECT * FROM `like` where uid = :uid AND `mid` = :mid');
+				$reponse->bindValue(':uid',$_SESSION['id'],PDO::PARAM_STR);
+				$reponse->bindValue(':mid',htmlentities($mid),PDO::PARAM_STR);
+				$reponse->execute();
+				if($donnees = $reponse->fetch())
+				{
+					$reponse->closeCursor();
+					$reponse = $bdd->prepare('DELETE FROM `like` WHERE `uid`=:uid AND `mid`=:mid');
+					$reponse->bindValue(':uid',$_SESSION['id'],PDO::PARAM_STR);
+					$reponse->bindValue(':mid',htmlentities($mid),PDO::PARAM_STR);
+					$reponse->execute();
+					$reponse->closeCursor();
+				}
+				else
+				{
+					$reponse->closeCursor();
+					$reponse = $bdd->prepare('INSERT INTO `like`(`uid`, `mid`) VALUES (:uid, :mid)');
+					$reponse->bindValue(':uid',$_SESSION['id'],PDO::PARAM_STR);
+					$reponse->bindValue(':mid',htmlentities($mid),PDO::PARAM_STR);
+					$reponse->execute();
+					$reponse->closeCursor();
+				}
+				$_SESSION['postmsg']='';
+				//header( "refresh:0;url=/" );
+			}
+			else
+			{
+				header('Location: /session.php');
+				$_SESSION['postmsg']='not_connected';
 			}
 		}
 	}
