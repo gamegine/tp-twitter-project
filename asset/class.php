@@ -36,16 +36,12 @@
 		{
 			$this->msg = array();
 			global $bdd;
-			$reponse = $bdd->prepare('SELECT * FROM `twitt`');
-			$reponse->execute();
-			while ($donnees = $reponse->fetch())
-			{ array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) ); }
-			$reponse->closeCursor();
-		}
-		function __construct1($id) {
-			$this->msg = array();
-			global $bdd;
-			$reponse = $bdd->prepare('SELECT * FROM `twitt`');
+			if (func_num_args())
+			{
+			$reponse = $bdd->prepare('SELECT * FROM `twitt` WHERE `uid`=:uid');
+			$reponse->bindValue(':uid',intval(func_get_args()[0]),PDO::PARAM_INT);
+			}
+			else{$reponse = $bdd->prepare('SELECT * FROM `twitt`');}
 			$reponse->execute();
 			while ($donnees = $reponse->fetch())
 			{ array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) ); }
