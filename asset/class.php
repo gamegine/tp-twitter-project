@@ -5,8 +5,6 @@
 		public function __construct($id)
 		{
 			global $bdd;
-			var_dump($id);
-			echo "<br>";
 			$reponse = $bdd->prepare('SELECT `uid`,`name` FROM `user` where uid = :uid');
 			$reponse->bindValue(':uid',intval($id),PDO::PARAM_INT);
 			$reponse->execute();
