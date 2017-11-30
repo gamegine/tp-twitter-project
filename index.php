@@ -7,6 +7,8 @@ if(isset($_POST['post']))
 	$post=new msgf();
 	$post->post(htmlentities($_POST['post']));
 }
+if(isset($_GET['uid'])){$l = new msglist(htmlentities($_GET['uid']));}
+else{$l = new msglist();}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -14,10 +16,7 @@ if(isset($_POST['post']))
 	<body>
 		<?php include("./asset/header.php"); ?>
 		<main>
-			<?php
-			$l = new msglist();
-			$l->ech();
-			?>
+			<?php $l->ech(); ?>
 			<form method="post">
 				<fieldset>
 					<legend>post</legend>
