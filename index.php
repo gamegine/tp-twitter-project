@@ -2,10 +2,12 @@
 session_start();
 include("asset/bdd.php");
 include("asset/class.php");
-if(isset($_POST['post']))
+if(isset($_POST))
 {
 	$post=new msgf();
-	$post->post(htmlentities($_POST['post']));
+	if(isset($_POST['post']))
+	{$post->post(htmlentities($_POST['post']));}
+	elseif(isset($_POST['likeid'])){$post->like($_POST['likeid']);}
 }
 if(isset($_GET['uid'])){$l = new msglist(htmlentities($_GET['uid']));}
 else{$l = new msglist();}
