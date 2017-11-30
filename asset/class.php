@@ -27,7 +27,12 @@
 			$this->nl = $nl;
 		}
 		public function ech()
-		{ echo"<div>";$this->author->ech();echo"<p>".htmlentities($this->msg).'</p><p><form method="post">'.$this->nl.' likes  <input type="hidden" name="likeid"value="'.$this->id.'"><input type="submit" value="like"></form></p></div>'; }
+		{ echo"	<div>
+				";$this->author->ech();echo"
+				<p>".htmlentities($this->msg).'</p>
+				<p><form method="post">'.$this->nl.' likes  <input type="hidden" name="likeid"value="'.$this->id.'"><input type="submit" value="like"></form></p>
+			</div>
+		'; }
 	}
 	class msglist
 	{
@@ -38,10 +43,10 @@
 			global $bdd;
 			if (func_num_args())
 			{
-			$reponse = $bdd->prepare('SELECT * FROM `twitt` WHERE `uid`=:uid');
+			$reponse = $bdd->prepare('SELECT * FROM `twitt` WHERE `uid`=:uid ORDER BY `id` DESC LIMIT 0,10');
 			$reponse->bindValue(':uid',intval(func_get_args()[0]),PDO::PARAM_INT);
 			}
-			else{$reponse = $bdd->prepare('SELECT * FROM `twitt`');}
+			else{$reponse = $bdd->prepare('SELECT * FROM `twitt` ORDER BY `id` DESC LIMIT 0,10');}
 			$reponse->execute();
 			while ($donnees = $reponse->fetch())
 			{
