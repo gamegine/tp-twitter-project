@@ -9,7 +9,14 @@ CREATE TABLE `user` (
   `name` varchar(32) NOT NULL,
   `mdp` varchar(64) NOT NULL
 );
+CREATE TABLE `like` (
+  `id` int(11) NOT NULL,
+  `uid` int(11) NOT NULL,
+  `mid` text NOT NULL
+);
 ALTER TABLE `twitt`ADD PRIMARY KEY (`id`);
 ALTER TABLE `twitt` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 ALTER TABLE `user`ADD PRIMARY KEY (`uid`);
 ALTER TABLE `user` MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `like`ADD PRIMARY KEY (`id`);
+ALTER TABLE `like` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
