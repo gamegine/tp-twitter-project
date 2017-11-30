@@ -4,8 +4,9 @@
 		private $id,$name;
 		public function __construct($id)
 		{
-			$this->msg = array();
 			global $bdd;
+			var_dump($id);
+			echo "<br>";
 			$reponse = $bdd->prepare('SELECT `uid`,`name` FROM `user` where uid = :uid');
 			$reponse->bindValue(':uid',intval($id),PDO::PARAM_INT);
 			$reponse->execute();
@@ -15,7 +16,7 @@
 			$reponse->closeCursor();
 		}
 		public function ech()
-		{ echo '<a>'.htmlentities($this->name).'</a>'; }
+		{ echo '<a href="/?uid='.$this->id.'">'.htmlentities($this->name).'</a>'; }
 	}
 	class msg
 	{
@@ -23,7 +24,7 @@
 		public function __construct($id,$authorid,$msg)
 		{
 			$this->id = $id;
-			$this->author = new user($authorid);
+			$this->author = $authorid;
 			$this->msg = htmlentities($msg);
 		}
 		public function ech()
@@ -44,7 +45,7 @@
 			else{$reponse = $bdd->prepare('SELECT * FROM `twitt`');}
 			$reponse->execute();
 			while ($donnees = $reponse->fetch())
-			{ array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) ); }
+			{ array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) );}
 			$reponse->closeCursor();
 		}
 		public function ech()
