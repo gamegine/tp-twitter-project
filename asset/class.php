@@ -74,13 +74,13 @@
 				$reponse->bindValue(':txt',htmlentities($msg),PDO::PARAM_STR);
 				$reponse->execute();
 				$reponse->closeCursor();
-				$_SESSION['postmsg']='';
+				$_SESSION['msg']='';
 				header( "refresh:0;url=/" );
 			}
 			else
 			{
 				header('Location: /session.php');
-				$_SESSION['postmsg']='not_connected';
+				$_SESSION['msg']='not_connected';
 			}
 		}
 		public function like($mid)
@@ -110,13 +110,13 @@
 					$reponse->execute();
 					$reponse->closeCursor();
 				}
-				$_SESSION['postmsg']='';
+				$_SESSION['msg']='';
 				header( "refresh:0;url=/" );
 			}
 			else
 			{
 				header('Location: /session.php');
-				$_SESSION['postmsg']='not_connected';
+				$_SESSION['msg']='not_connected';
 			}
 		}
 	}
