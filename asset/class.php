@@ -26,7 +26,7 @@
 			$this->msg = htmlentities($msg);
 		}
 		public function ech()
-		{ echo "<div>";$this->author->ech();echo"<p>".htmlentities($this->msg)."</p></div>"; }
+		{ echo"<div>";$this->author->ech();echo"<p>".htmlentities($this->msg).'</p><form method="post"><input type="hidden" name="likeid"value="'.$this->id.'"><input type="submit" value="like"></form></div>'; }
 	}
 	class msglist
 	{
@@ -98,7 +98,7 @@
 					$reponse->closeCursor();
 				}
 				$_SESSION['postmsg']='';
-				//header( "refresh:0;url=/" );
+				header( "refresh:0;url=/" );
 			}
 			else
 			{
