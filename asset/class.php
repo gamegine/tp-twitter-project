@@ -18,15 +18,16 @@
 	}
 	class msg
 	{
-		private $id,$author,$msg;
-		public function __construct($id,$authorid,$msg)
+		private $id,$author,$msg,$nl;
+		public function __construct($id,$authorid,$msg,$nl)
 		{
 			$this->id = $id;
 			$this->author = $authorid;
 			$this->msg = htmlentities($msg);
+			$this->nl = $nl;
 		}
 		public function ech()
-		{ echo"<div>";$this->author->ech();echo"<p>".htmlentities($this->msg).'</p><form method="post"><input type="hidden" name="likeid"value="'.$this->id.'"><input type="submit" value="like"></form></div>'; }
+		{ echo"<div>";$this->author->ech();echo"<p>".htmlentities($this->msg).'</p><p>'.$this->nl.' likes<form method="post"><input type="hidden" name="likeid"value="'.$this->id.'"><input type="submit" value="like"></form></p></div>'; }
 	}
 	class msglist
 	{
@@ -43,7 +44,14 @@
 			else{$reponse = $bdd->prepare('SELECT * FROM `twitt`');}
 			$reponse->execute();
 			while ($donnees = $reponse->fetch())
-			{ array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ) );}
+			{
+				$l= $bdd->prepare('SELECT COUNT(*) AS L FROM `like` WHERE `mid`=:mid');
+				$l->bindValue(':mid',$donnees['id'],PDO::PARAM_INT);
+				$l->execute();
+				$nl=$l->fetch()[0];
+				$l->closeCursor();
+				array_push( $this->msg, new msg( $donnees['id'] , new user($donnees['uid']) , $donnees['txt'] ,$nl) );
+			}
 			$reponse->closeCursor();
 		}
 		public function ech()
