@@ -27,7 +27,7 @@
 			$this->nl = $nl;
 		}
 		public function ech()
-		{ echo"<div>";$this->author->ech();echo"<p>".htmlentities($this->msg).'</p><p>'.$this->nl.' likes<form method="post"><input type="hidden" name="likeid"value="'.$this->id.'"><input type="submit" value="like"></form></p></div>'; }
+		{ echo"<div>";$this->author->ech();echo"<p>".htmlentities($this->msg).'</p><p><form method="post">'.$this->nl.' likes  <input type="hidden" name="likeid"value="'.$this->id.'"><input type="submit" value="like"></form></p></div>'; }
 	}
 	class msglist
 	{
